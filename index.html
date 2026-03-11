@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Samaprof - Plateforme de Cours</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f4f4;
+}
+
+header{
+background:#0d47a1;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+nav{
+background:#1565c0;
+padding:15px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.section{
+padding:40px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:20px 0;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+input,select,textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+background:#0d47a1;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.profCard{
+border:1px solid #ddd;
+padding:15px;
+border-radius:10px;
+margin:15px 0;
+}
+
+.profCard img{
+width:100px;
+height:100px;
+border-radius:50%;
+}
+
+.chatBox{
+border:1px solid #ccc;
+height:250px;
+overflow-y:auto;
+padding:10px;
+margin-bottom:10px;
+background:#fafafa;
+}
+
+.message{
+padding:8px;
+background:#e3f2fd;
+margin:5px 0;
+border-radius:5px;
+}
+
+.review{
+background:#fff8e1;
+padding:10px;
+margin:10px 0;
+border-radius:5px;
+}
+
+footer{
+background:#0d47a1;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🎓 Samaprof</h1>
+
+<p>Trouvez un professeur ou un élève facilement</p>
+
+</header>
+
+<nav>
+
+<a href="#home">Accueil</a>
+<a href="#courses">Cours</a>
+<a href="#search">Chercher Prof</a>
+<a href="#prof">Devenir Prof</a>
+<a href="#student">Élève</a>
+<a href="#chat">Chat</a>
+<a href="#reviews">Avis</a>
+<a href="#dashboard">Dashboard</a>
+
+</nav>
+
+<!-- ACCUEIL -->
+
+<section id="home" class="section">
+
+<div class="container">
+
+<div class="card">
+
+<h2>Bienvenue sur Samaprof</h2>
+
+<p>Plateforme sénégalaise pour trouver des cours de renforcement.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- COURS -->
+
+<section id="courses" class="section">
+
+<div class="container">
+
+<h2>📚 Cours disponibles</h2>
+
+<div class="grid">
+
+<div class="card">Mathématiques</div>
+<div class="card">Français</div>
+<div class="card">Anglais</div>
+<div class="card">Informatique</div>
+<div class="card">Physique</div>
+<div class="card">Chimie</div>
+<div class="card">SVT</div>
+<div class="card">Histoire</div>
+<div class="card">Géographie</div>
+<div class="card">Philosophie</div>
+<div class="card">Arabe</div>
+<div class="card">Espagnol</div>
+<div class="card">Programmation</div>
+<div class="card">HTML</div>
+<div class="card">CSS</div>
+<div class="card">JavaScript</div>
+<div class="card">Marketing</div>
+<div class="card">Comptabilité</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RECHERCHE PROF -->
+
+<section id="search" class="section">
+
+<div class="container">
+
+<h2>🔎 Chercher un professeur</h2>
+
+<div class="card">
+
+<input id="searchSubject" placeholder="matière">
+
+<input id="searchCity" placeholder="ville">
+
+<button onclick="searchProf()">Rechercher</button>
+
+</div>
+
+<div id="profResults"></div>
+
+</div>
+
+</section>
+
+<!-- PROF -->
+
+<section id="prof" class="section">
+
+<div class="container">
+
+<h2>👨‍🏫 Inscription professeur</h2>
+
+<div class="card">
+
+<input id="profName" placeholder="Nom">
+
+<select id="profSubject">
+
+<option>Mathématiques</option>
+<option>Français</option>
+<option>Anglais</option>
+<option>Informatique</option>
+<option>Physique</option>
+<option>Chimie</option>
+<option>Programmation</option>
+
+</select>
+
+<input id="profCity" placeholder="Ville">
+
+<input id="profPrice" placeholder="Prix par heure">
+
+<textarea id="profDesc" placeholder="Description"></textarea>
+
+<input id="profPhoto" placeholder="Lien photo">
+
+<input id="profWhatsapp" placeholder="WhatsApp">
+
+<select id="profRating">
+
+<option>⭐</option>
+<option>⭐⭐</option>
+<option>⭐⭐⭐</option>
+<option>⭐⭐⭐⭐</option>
+<option>⭐⭐⭐⭐⭐</option>
+
+</select>
+
+<button onclick="addProf()">Publier</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ELEVE -->
+
+<section id="student" class="section">
+
+<div class="container">
+
+<h2>👨‍🎓 Élève cherche cours</h2>
+
+<div class="card">
+
+<input placeholder="Nom">
+
+<select>
+
+<option>Mathématiques</option>
+<option>Français</option>
+<option>Anglais</option>
+<option>Informatique</option>
+<option>Physique</option>
+
+</select>
+
+<textarea placeholder="Expliquez votre besoin"></textarea>
+
+<button>Publier</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CHAT -->
+
+<section id="chat" class="section">
+
+<div class="container">
+
+<h2>💬 Chat privé</h2>
+
+<div class="card">
+
+<div class="chatBox" id="chatBox"></div>
+
+<input id="chatInput" placeholder="Écrire un message">
+
+<button onclick="sendMessage()">Envoyer</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- AVIS -->
+
+<section id="reviews" class="section">
+
+<div class="container">
+
+<h2>⭐ Avis</h2>
+
+<div class="card">
+
+<input id="reviewName" placeholder="Nom">
+
+<textarea id="reviewText" placeholder="Avis"></textarea>
+
+<button onclick="addReview()">Publier</button>
+
+</div>
+
+<div id="reviewList"></div>
+
+</div>
+
+</section>
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="section">
+
+<div class="container">
+
+<h2>📊 Dashboard</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Professeurs</h3>
+
+<p id="countProf">0</p>
+
+</div>
+
+<div class="card">
+
+<h3>Avis</h3>
+
+<p id="countReview">0</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+Samaprof © 2026
+
+</footer>
+
+<script>
+
+let profs = JSON.parse(localStorage.getItem("profs")) || []
+
+let reviews = JSON.parse(localStorage.getItem("reviews")) || []
+
+let messages=[]
+
+function addProf(){
+
+let prof={
+
+name:profName.value,
+subject:profSubject.value,
+city:profCity.value,
+price:profPrice.value,
+desc:profDesc.value,
+photo:profPhoto.value,
+whatsapp:profWhatsapp.value,
+rating:profRating.value
+
+}
+
+profs.push(prof)
+
+localStorage.setItem("profs",JSON.stringify(profs))
+
+alert("Prof ajouté")
+
+updateDashboard()
+
+}
+
+function searchProf(){
+
+let subject=searchSubject.value.toLowerCase()
+
+let city=searchCity.value.toLowerCase()
+
+let html=""
+
+profs.forEach(p=>{
+
+if(p.subject.toLowerCase().includes(subject) &&
+p.city.toLowerCase().includes(city)){
+
+html+=`
+
+<div class="profCard">
+
+<img src="${p.photo}">
+
+<h3>${p.name}</h3>
+
+<p>${p.rating}</p>
+
+<p>Matière : ${p.subject}</p>
+
+<p>Ville : ${p.city}</p>
+
+<p>Prix : ${p.price}</p>
+
+<p>${p.desc}</p>
+
+<a href="https://wa.me/${p.whatsapp}" target="_blank">
+
+<button>💬 WhatsApp</button>
+
+</a>
+
+</div>
+
+`
+
+}
+
+})
+
+profResults.innerHTML=html
+
+}
+
+function sendMessage(){
+
+let text=chatInput.value
+
+if(text==="") return
+
+messages.push(text)
+
+displayChat()
+
+chatInput.value=""
+
+}
+
+function displayChat(){
+
+let html=""
+
+messages.forEach(m=>{
+
+html+=`<div class="message">${m}</div>`
+
+})
+
+chatBox.innerHTML=html
+
+}
+
+function addReview(){
+
+let review={
+
+name:reviewName.value,
+text:reviewText.value
+
+}
+
+reviews.push(review)
+
+localStorage.setItem("reviews",JSON.stringify(reviews))
+
+displayReviews()
+
+updateDashboard()
+
+}
+
+function displayReviews(){
+
+let html=""
+
+reviews.forEach(r=>{
+
+html+=`<div class="review"><b>${r.name}</b><br>${r.text}</div>`
+
+})
+
+reviewList.innerHTML=html
+
+}
+
+function updateDashboard(){
+
+countProf.innerText=profs.length
+
+countReview.innerText=reviews.length
+
+}
+
+displayReviews()
+
+updateDashboard()
+
+</script>
+
+</body>
+
+</html>
