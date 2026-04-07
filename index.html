@@ -1,43 +1,63 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Samaprof - Plateforme de Cours</title>
+<title>Samaprof - cherche ton prof, trouve des élèves.</title>
 
 <style>
 
 body{
-font-family:Arial;
+font-family:'Segoe UI',sans-serif;
 margin:0;
-background:#f4f4f4;
+background:linear-gradient(to bottom,#eef2f7,#dfe6ee);
 }
 
 header{
-background:#0d47a1;
+background:linear-gradient(135deg,#0d47a1,#1976d2);
 color:white;
 padding:40px;
 text-align:center;
 }
 
+.logo{
+width:80px;
+margin-bottom:10px;
+border-radius:50%;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
 nav{
-background:#1565c0;
-padding:15px;
-text-align:center;
+background:#0b3d91;
+padding:10px;
+display:flex;
+overflow-x:auto;
 }
 
 nav a{
 color:white;
-margin:10px;
-text-decoration:none;
-font-weight:bold;
+padding:10px;
+cursor:pointer;
+white-space:nowrap;
 }
 
+/* SECTION */
+
 .section{
-padding:40px;
+display:none;
+padding:30px;
+animation:fade 0.3s ease;
+}
+
+.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 .container{
@@ -49,8 +69,13 @@ margin:auto;
 background:white;
 padding:20px;
 margin:20px 0;
-border-radius:10px;
-box-shadow:0 4px 15px rgba(0,0,0,0.1);
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .grid{
@@ -61,33 +86,47 @@ gap:20px;
 
 input,select,textarea{
 width:100%;
-padding:10px;
+padding:12px;
 margin:10px 0;
-border-radius:5px;
+border-radius:8px;
 border:1px solid #ccc;
 }
 
 button{
-background:#0d47a1;
+background:linear-gradient(135deg,#0d47a1,#1976d2);
 color:white;
 border:none;
-padding:10px 20px;
-border-radius:5px;
+padding:12px 20px;
+border-radius:8px;
 cursor:pointer;
 }
 
+button:hover{
+transform:scale(1.05);
+}
+
+/* PROF */
+
 .profCard{
-border:1px solid #ddd;
+background:white;
 padding:15px;
-border-radius:10px;
+border-radius:12px;
 margin:15px 0;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+display:flex;
+gap:15px;
+align-items:center;
 }
 
 .profCard img{
-width:100px;
-height:100px;
+width:80px;
+height:80px;
 border-radius:50%;
+object-fit:cover;
+border:2px solid #0d47a1;
 }
+
+/* CHAT */
 
 .chatBox{
 border:1px solid #ccc;
@@ -104,6 +143,8 @@ background:#e3f2fd;
 margin:5px 0;
 border-radius:5px;
 }
+
+/* REVIEW */
 
 .review{
 background:#fff8e1;
@@ -126,365 +167,276 @@ padding:20px;
 <body>
 
 <header>
-
+<img src="logo.png" alt="Samaprof Logo" class="logo">
 <h1>🎓 Samaprof</h1>
-
-<p>Trouvez un professeur ou un élève facilement</p>
-
+<p>Trouvez un professeur facilement</p>
 </header>
 
 <nav>
-
-<a href="#home">Accueil</a>
-<a href="#courses">Cours</a>
-<a href="#search">Chercher Prof</a>
-<a href="#prof">Devenir Prof</a>
-<a href="#student">Élève</a>
-<a href="#chat">Chat</a>
-<a href="#reviews">Avis</a>
-<a href="#dashboard">Dashboard</a>
-
+<a onclick="showSection('home')">Accueil</a>
+<a onclick="showSection('search')">Chercher</a>
+<a onclick="showSection('prof')">Prof</a>
+<a onclick="showSection('chat')">Chat</a>
+<a onclick="showSection('reviews')">Avis</a>
+<a onclick="showSection('dashboard')">Dashboard</a>
 </nav>
 
-<!-- ACCUEIL -->
+<!-- HOME -->
 
-<section id="home" class="section">
-
+<section id="home" class="section active">
 <div class="container">
-
 <div class="card">
-
-<h2>Bienvenue sur Samaprof</h2>
-
-<p>Plateforme sénégalaise pour trouver des cours de renforcement.</p>
-
+<h2>Bienvenue 👋</h2>
+<p>Plateforme sénégalaise de cours</p>
 </div>
-
 </div>
-
 </section>
 
-<!-- COURS -->
-
-<section id="courses" class="section">
-
-<div class="container">
-
-<h2>📚 Cours disponibles</h2>
-
-<div class="grid">
-
-<div class="card">Mathématiques</div>
-<div class="card">Français</div>
-<div class="card">Anglais</div>
-<div class="card">Informatique</div>
-<div class="card">Physique</div>
-<div class="card">Chimie</div>
-<div class="card">SVT</div>
-<div class="card">Histoire</div>
-<div class="card">Géographie</div>
-<div class="card">Philosophie</div>
-<div class="card">Arabe</div>
-<div class="card">Espagnol</div>
-<div class="card">Programmation</div>
-<div class="card">HTML</div>
-<div class="card">CSS</div>
-<div class="card">JavaScript</div>
-<div class="card">Marketing</div>
-<div class="card">Comptabilité</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- RECHERCHE PROF -->
+<!-- SEARCH -->
 
 <section id="search" class="section">
-
 <div class="container">
+<h2>🔎 Recherche</h2>
 
-<h2>🔎 Chercher un professeur</h2>
-
-<div class="card">
-
-<input id="searchSubject" placeholder="matière">
-
-<input id="searchCity" placeholder="ville">
-
-<button onclick="searchProf()">Rechercher</button>
-
-</div>
+<input id="searchInput" placeholder="Nom, matière ou ville">
 
 <div id="profResults"></div>
-
 </div>
-
 </section>
 
 <!-- PROF -->
 
 <section id="prof" class="section">
-
 <div class="container">
 
-<h2>👨‍🏫 Inscription professeur</h2>
-
-<div class="card">
+<h2>👨‍🏫 Ajouter un prof</h2>
 
 <input id="profName" placeholder="Nom">
-
-<select id="profSubject">
-
-<option>Mathématiques</option>
-<option>Français</option>
-<option>Anglais</option>
-<option>Informatique</option>
-<option>Physique</option>
-<option>Chimie</option>
-<option>Programmation</option>
-
-</select>
-
+<input id="profSubject" placeholder="Matière">
 <input id="profCity" placeholder="Ville">
-
-<input id="profPrice" placeholder="Prix par heure">
-
-<textarea id="profDesc" placeholder="Description"></textarea>
-
-<input id="profPhoto" placeholder="Lien photo">
-
+<input id="profPrice" placeholder="Prix">
 <input id="profWhatsapp" placeholder="WhatsApp">
 
-<select id="profRating">
-
-<option>⭐</option>
-<option>⭐⭐</option>
-<option>⭐⭐⭐</option>
-<option>⭐⭐⭐⭐</option>
-<option>⭐⭐⭐⭐⭐</option>
-
-</select>
+<input type="file" id="profPhoto" accept="image/*">
+<img id="preview" style="width:80px;border-radius:50%;display:none;margin-top:10px;">
 
 <button onclick="addProf()">Publier</button>
 
 </div>
-
-</div>
-
-</section>
-
-<!-- ELEVE -->
-
-<section id="student" class="section">
-
-<div class="container">
-
-<h2>👨‍🎓 Élève cherche cours</h2>
-
-<div class="card">
-
-<input placeholder="Nom">
-
-<select>
-
-<option>Mathématiques</option>
-<option>Français</option>
-<option>Anglais</option>
-<option>Informatique</option>
-<option>Physique</option>
-
-</select>
-
-<textarea placeholder="Expliquez votre besoin"></textarea>
-
-<button>Publier</button>
-
-</div>
-
-</div>
-
 </section>
 
 <!-- CHAT -->
 
 <section id="chat" class="section">
-
 <div class="container">
-
-<h2>💬 Chat privé</h2>
-
-<div class="card">
+<h2>💬 Chat</h2>
 
 <div class="chatBox" id="chatBox"></div>
-
-<input id="chatInput" placeholder="Écrire un message">
-
+<input id="chatInput" placeholder="Message">
 <button onclick="sendMessage()">Envoyer</button>
 
 </div>
-
-</div>
-
 </section>
 
-<!-- AVIS -->
+<!-- REVIEWS -->
 
 <section id="reviews" class="section">
-
 <div class="container">
-
 <h2>⭐ Avis</h2>
 
-<div class="card">
-
 <input id="reviewName" placeholder="Nom">
-
 <textarea id="reviewText" placeholder="Avis"></textarea>
-
 <button onclick="addReview()">Publier</button>
-
-</div>
 
 <div id="reviewList"></div>
 
 </div>
-
 </section>
 
 <!-- DASHBOARD -->
 
 <section id="dashboard" class="section">
-
 <div class="container">
 
-<h2>📊 Dashboard</h2>
-
 <div class="grid">
-
 <div class="card">
-
 <h3>Professeurs</h3>
-
 <p id="countProf">0</p>
-
 </div>
 
 <div class="card">
-
 <h3>Avis</h3>
-
 <p id="countReview">0</p>
-
+</div>
 </div>
 
 </div>
-
-</div>
-
 </section>
 
 <footer>
-
 Samaprof © 2026
-
 </footer>
 
 <script>
 
-let profs = JSON.parse(localStorage.getItem("profs")) || []
+/* NAVIGATION */
 
-let reviews = JSON.parse(localStorage.getItem("reviews")) || []
+function showSection(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"))
+document.getElementById(id).classList.add("active")
+}
 
-let messages=[]
+/* DATA */
+
+let profs=JSON.parse(localStorage.getItem("profs"))||[]
+let reviews=JSON.parse(localStorage.getItem("reviews"))||[]
+let messages=JSON.parse(localStorage.getItem("messages"))||[]
+
+/* PREVIEW IMAGE */
+
+document.getElementById("profPhoto").addEventListener("change",function(){
+
+let file=this.files[0]
+
+if(file){
+let reader=new FileReader()
+
+reader.onload=function(e){
+let img=document.getElementById("preview")
+img.src=e.target.result
+img.style.display="block"
+}
+
+reader.readAsDataURL(file)
+}
+
+})
+
+/* ADD PROF */
 
 function addProf(){
 
-let prof={
+let file=document.getElementById("profPhoto").files[0]
 
+if(!profName.value || !profSubject.value || !profCity.value || !profPrice.value || !profWhatsapp.value){
+alert("Remplis tous les champs")
+return
+}
+
+if(!file){
+alert("Ajoute une photo")
+return
+}
+
+let reader=new FileReader()
+
+reader.onload=function(e){
+
+let prof={
 name:profName.value,
 subject:profSubject.value,
 city:profCity.value,
 price:profPrice.value,
-desc:profDesc.value,
-photo:profPhoto.value,
 whatsapp:profWhatsapp.value,
-rating:profRating.value
-
+photo:e.target.result
 }
 
 profs.push(prof)
-
 localStorage.setItem("profs",JSON.stringify(profs))
 
-alert("Prof ajouté")
+alert("✅ Prof ajouté")
 
+profName.value=""
+profSubject.value=""
+profCity.value=""
+profPrice.value=""
+profWhatsapp.value=""
+preview.style.display="none"
+
+displayProfs()
 updateDashboard()
 
 }
 
-function searchProf(){
+reader.readAsDataURL(file)
 
-let subject=searchSubject.value.toLowerCase()
+}
 
-let city=searchCity.value.toLowerCase()
+/* AFFICHAGE PROFS */
+
+function displayProfs(){
 
 let html=""
 
 profs.forEach(p=>{
+html+=`
+<div class="profCard">
+<img src="${p.photo}">
+<div>
+<h3>${p.name}</h3>
+<p>${p.subject} - ${p.city}</p>
+<p>${p.price}</p>
+<a href="https://wa.me/${p.whatsapp}" target="_blank">
+<button>WhatsApp</button>
+</a>
+</div>
+</div>
+`
+})
 
-if(p.subject.toLowerCase().includes(subject) &&
-p.city.toLowerCase().includes(city)){
+profResults.innerHTML=html
+}
+
+displayProfs()
+
+/* SEARCH */
+
+searchInput.addEventListener("input",function(){
+
+let val=this.value.toLowerCase()
+let html=""
+
+profs.forEach(p=>{
+
+if(
+p.name.toLowerCase().includes(val) ||
+p.subject.toLowerCase().includes(val) ||
+p.city.toLowerCase().includes(val)
+){
 
 html+=`
-
 <div class="profCard">
-
 <img src="${p.photo}">
-
+<div>
 <h3>${p.name}</h3>
-
-<p>${p.rating}</p>
-
-<p>Matière : ${p.subject}</p>
-
-<p>Ville : ${p.city}</p>
-
-<p>Prix : ${p.price}</p>
-
-<p>${p.desc}</p>
-
+<p>${p.subject} - ${p.city}</p>
+<p>${p.price}</p>
 <a href="https://wa.me/${p.whatsapp}" target="_blank">
-
-<button>💬 WhatsApp</button>
-
+<button>WhatsApp</button>
 </a>
-
 </div>
-
+</div>
 `
-
 }
 
 })
 
 profResults.innerHTML=html
 
-}
+})
+
+/* CHAT */
 
 function sendMessage(){
 
 let text=chatInput.value
-
 if(text==="") return
 
 messages.push(text)
+localStorage.setItem("messages",JSON.stringify(messages))
 
 displayChat()
-
 chatInput.value=""
-
 }
 
 function displayChat(){
@@ -492,30 +444,36 @@ function displayChat(){
 let html=""
 
 messages.forEach(m=>{
-
 html+=`<div class="message">${m}</div>`
-
 })
 
 chatBox.innerHTML=html
 
 }
 
+displayChat()
+
+/* REVIEWS */
+
 function addReview(){
 
-let review={
+if(!reviewName.value || !reviewText.value){
+alert("Remplis les champs")
+return
+}
 
+let review={
 name:reviewName.value,
 text:reviewText.value
-
 }
 
 reviews.push(review)
-
 localStorage.setItem("reviews",JSON.stringify(reviews))
 
-displayReviews()
+reviewName.value=""
+reviewText.value=""
 
+displayReviews()
 updateDashboard()
 
 }
@@ -525,29 +483,25 @@ function displayReviews(){
 let html=""
 
 reviews.forEach(r=>{
-
 html+=`<div class="review"><b>${r.name}</b><br>${r.text}</div>`
-
 })
 
 reviewList.innerHTML=html
 
 }
 
-function updateDashboard(){
-
-countProf.innerText=profs.length
-
-countReview.innerText=reviews.length
-
-}
-
 displayReviews()
+
+/* DASHBOARD */
+
+function updateDashboard(){
+countProf.innerText=profs.length
+countReview.innerText=reviews.length
+}
 
 updateDashboard()
 
 </script>
 
 </body>
-
 </html>
